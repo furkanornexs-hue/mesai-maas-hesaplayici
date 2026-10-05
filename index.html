@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesai Maaş Hesaplayıcı</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 8px;
+            background: #007aff;
+            color: white;
+            font-size: 18px;
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 15px;
+            background: #eee;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>💰 Mesai Maaş Hesaplayıcı</h1>
+
+    <label>Aylık Maaş (TL)</label>
+    <input type="number" id="salary" placeholder="Örn: 40000">
+
+    <label>Günlük Çalışma Saati</label>
+    <input type="number" id="dailyHours" placeholder="Örn: 8">
+
+    <label>Toplam Mesai Saati</label>
+    <input type="number" id="overtime" placeholder="Örn: 20">
+
+    <button onclick="calculateSalary()">
+        Hesapla
+    </button>
+
+    <div class="result" id="result">
+        Sonuç burada görünecek.
+    </div>
+
+</div>
+
+<script>
+
+function calculateSalary() {
+
+    const salary = Number(document.getElementById("salary").value);
+    const dailyHours = Number(document.getElementById("dailyHours").value);
+    const overtime = Number(document.getElementById("overtime").value);
+
+    const hourlySalary = salary / 225;
+
+    const overtimeHourly = hourlySalary * 1.5;
+
+    const overtimePay = overtime * overtimeHourly;
+
+    const totalSalary = salary + overtimePay;
+
+    document.getElementById("result").innerHTML = `
+        Normal maaş: ${salary.toFixed(2)} TL<br>
+        Saatlik ücret: ${hourlySalary.toFixed(2)} TL<br>
+        Mesai ücreti: ${overtimePay.toFixed(2)} TL<br>
+        <strong>Toplam maaş: ${totalSalary.toFixed(2)} TL</strong>
+    `;
+}
+
+</script>
+
+</body>
+</html>
